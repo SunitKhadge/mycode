@@ -1,4 +1,4 @@
-
+Learning how to version control with git. 
 # mycode (Learning Python )
 
 Learning python with Alta3
