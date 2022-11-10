@@ -2,46 +2,65 @@
 
 name=input("What is your name? ")
 
-age = input("How old are you: a (<18), b (18-39), c (40-65), d (>65)?" )
-
 age_cat = ['a','b','c','d']
+age =""
+while True:
+     
+    age = input("How old are you: a (<18), b (18-39), c (40-65), d (>65)?" )
+    
+    if age in age_cat:
+        break
+    
+while True:
+    favcolor= input("What is your favorite color: green, yellow, red, blue ?" )
+    if favcolor in ['green', 'yellow' , 'red', 'blue']:
+        break
 
-if age not in age_cat:
-    print ('Please specify one of the age categories provided: a, b, c or d ?')
-favcolor= input("What is your favorite color: green, yellow, red, blue ?" )
+while True:
+    morningdrink=input("What do you drink for breakfast: tea, coffee ?")
+    if morningdrink in ['tea','coffee']:
+        break
 
-morningdrink=input("What do you drink for breakfast: tea, coffee ?")
 
-h2o= int(input("How many litres of water do you drink?") )
+while True: 
+    h2o= int(input("How many litres of water do you drink?") )
+    if h2o>0:
+        break
+    
+    
 
-veggies =['brussel sprouts','kale','spinach', 'green peas','lettuce', 'broccoli','cauliflower','potato','sweet potatoes', 'carrot','pumpkin', 'squash','beet','radish','tomato', 'red pepper','turnip', 'onion','cabbage','okra','mushroom', 'celery','yam', 'gourd', 'parsnip','kale','chives','artichoke','bok choy','napa cabbage','swiss chard', 'green beans', 'cucumbers', 'mustard greens','corn', 'butter lettuce', 'tomatillo','eggplant', 'zucchini','olive','bamboo shoot', 'dill', 'cilantro','black eyes peas','shitaki mushroom','fennel','leeks','rhubarb' ]
+veggies =['brussel sprouts','kale','spinach', 'green peas','lettuce', 'broccoli','cauliflower','potato','sweet potatoes', 'carrot','pumpkin', 'squash','beet','radish','tomato', 'red pepper','turnip', 'onion','cabbage','okra','mushroom', 'celery','yam', 'gourd', 'parsnip','kale','chives','artichoke','bok choy','napa cabbage','swiss chard', 'green beans', 'cucumbers', 'mustard greens','corn', 'butter lettuce', 'tomatillo','eggplant', 'zucchini','olive','bamboo shoot', 'dill', 'cilantro','black eyes peas','shitaki mushroom','fennel','leeks','rhubarb', 'lotus']
+
 
 if age=="a":
-    veggie= veggies[0:15]
+    veggie= veggies[0:16]
 elif age=="b":
-    veggie=veggies[16:31]
+    veggie=veggies[16:32]
 elif age=="c":
-    veggie=veggies[32:47]
+    veggie=veggies[32:48]
 elif age=="d":
-    veggie=veggies[24-39]
+    veggie=veggies[25-41]
 
 if favcolor=="green":
-    veggie = veggie[0:3]
+    veggie = veggie[0:4]
 elif  favcolor=="yellow":
-    veggie = veggie[4:7]
+    veggie = veggie[4:8]
 elif favcolor=="red":
-    veggie=veggie[8:11]
+    veggie=veggie[8:12]
 elif favcolor=="blue":
-    veggie=veggie[12:15]
-
+    veggie=veggie[12:16]
 if morningdrink=="tea":
-    veggie=veggie[0:1]    
-elif mornigdrink=="coffee":            
-    veggie=veggie[2:3]        
+    veggie=veggie[0:2]    
+elif morningdrink=="coffee":            
+    veggie=veggie[2:4]       
 
-if h2o<=2:
-    print(f"{name}, your favorite vegetable is {veggie[0]}")
+if h2o < 2:
+    #print(veggie)
+    print(f"{name}, your favorite vegetable is {veggie[0]}. \n I recommend trying {veggie[1]} if you have not already.")
+    print("P.S. You need to drink more water.") 
 else:
-    print (f"{name}, your favorite vegetabe is {veggie[1]}")
+    #print(veggie)
+    print (f"{name}, your favorite vegetabe is {veggie[1]} \n I recommend trying {veggie[0]} if you have not already.")
+
 
 
