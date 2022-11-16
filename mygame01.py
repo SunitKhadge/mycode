@@ -14,8 +14,8 @@ def showInstructions():
     To win:
     i) Get to the Garden with a key and potion.
         or 
-    ii) Get to the Garage with a key and drive().
-    ========
+    ii) Get to the Garage with a key and garage_opener, and get the car..
+    ===========================================
     Commands:
       go [direction]
       get [item]
@@ -89,7 +89,7 @@ rooms = {
                   'west' : 'Dining Room',
                   'south': 'Bedroom',
                   'north': 'Garage',
-                  'item' : 'wine',
+                  'item' : 'garage_opener',
                   'desc' : 'Garage on North, Dining Room on West, Bedroom on South'
                },
             'Bedroom' : {
@@ -173,25 +173,21 @@ while True:
     
     #If the player goes into Drawing Room, they have to play a game of dice with Computer 
     if currentRoom == 'Drawing Room':
-        print('Play a game of Dice against the  Computer.\nYou get 3 chances to win the computer.')
-        count =0
-        while count <3: 
-            while True:
-                roll=input('Press Y to roll dice ')
-
-                if roll.lower() == 'y':
-                    count +=1
-                    player1 = randint(1,6)
-                    print('You rolled '+ str(player1))
-                    player2 = randint(1,6)
-                    print('Computer rolled ' + str( player2))
-                    time.sleep(2)
-                    if player1 > player2:
-                        print('You win !!! You continue with the game.')
-                        continue 
-        else:                        
-            print('You lose !!! The house wins. You are now owned by the house.')
-            break
+        print('Play a game of Dice against the  Computer.\n You have to keep playing till you win.')
+        
+        while True:
+            roll=input('Press Y to roll dice ')
+            if roll.lower() == 'y':                
+                player1 = randint(1,6)
+                print('You rolled '+ str(player1))                
+                player2 = randint(1,6)
+                print('Computer rolled ' + str( player2))
+                time.sleep(2)
+                if player1 > player2:
+                    print('You win !!! You can continue with the game.')
+                    break
+        else:
+            continue
             
             
 
@@ -199,12 +195,17 @@ while True:
 
     ## If a player enters a room with a monster: currently only kitchen 
     ## Player does not lose if they have an 'invisible cloak' in their inventory: monster cannot see them
-    if 'item' in rooms[currentRoom] and 'monster' in rooms[currentRoom]['item'] and 'invisible_cloak' not in inventory:
-        print('A monster has got you... GAME OVER!')
-        break
+    if 'item' in rooms[currentRoom] and 'monster' in rooms[currentRoom]['item'] and 'invisible_cloak' in inventory:
+        cloak = input('Your invisible cloak will save you from the monster. Do you want to wear it (Y/N)? \n else you will die.') 
+        if cloak.lower() == 'y':
+            print('You just saved yourself from the moster.')
+            inventory.remove('invisible_cloak')
+        elif 'item' in rooms[currentRoom] and 'monster' in rooms[currentRoom]['item'] and 'invisible_cloak' not in inventory:
+            print('A monster has got you... GAME OVER!')
+            break
     ## the invisible cloak is used and removed from the inventory  
-    elif 'item' in rooms[currentRoom] and 'monster' in rooms[currentRoom]['item'] and 'invisible_cloak' in inventory:
-        inventory.remove('invisible_cloak')
+    ##elif 'item' in rooms[currentRoom] and 'monster' in rooms[currentRoom]['item'] and 'invisible_cloak' in inventory:
+      ##  inventory.remove('invisible_cloak')
         
 
     ## i. win scenario I : Define how a player can win 
@@ -213,8 +214,8 @@ while True:
         break
 
     ## ii. Win scenario II: Define how a player can win
-    if currentRoom == 'Garage' and 'key' in inventory and 'car' in inventory:
-        print('You escaped the hosue in the car ... YOU WIN!')
+    if currentRoom == 'Garage' and 'key' in inventory and 'car' in inventory and 'garage_opener' in inventory:
+        print('You escaped the house in the car ... YOU WIN!')
         break
 
 
