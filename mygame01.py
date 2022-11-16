@@ -3,6 +3,8 @@
    a dictionary object | Alta3 Research"""
 
 import time 
+from random import randint
+
 def showInstructions():
     """Show the game instructions when called"""
     #print a main menu and the commands
@@ -17,6 +19,7 @@ def showInstructions():
     Commands:
       go [direction]
       get [item]
+      teleport to [Room] 
     ''')
 
 def showStatus():
@@ -167,8 +170,34 @@ while True:
         else:
             #tell them they can't get it
             print('Can\'t get ' + move[1] + '!')
+    
+    #If the player goes into Drawing Room, they have to play a game of dice with Computer 
+    if currentRoom == 'Drawing Room':
+        print('Play a game of Dice against the  Computer.\nYou get 3 chances to win the computer.')
+        count =0
+        while count <3: 
+            while True:
+                roll=input('Press Y to roll dice ')
 
-    ## If a player enters a room with a monster
+                if roll.lower() == 'y':
+                    count +=1
+                    player1 = randint(1,6)
+                    print('You rolled '+ str(player1))
+                    player2 = randint(1,6)
+                    print('Computer rolled ' + str( player2))
+                    time.sleep(2)
+                    if player1 > player2:
+                        print('You win !!! You continue with the game.')
+                        continue 
+        else:                        
+            print('You lose !!! The house wins. You are now owned by the house.')
+            break
+            
+            
+
+
+
+    ## If a player enters a room with a monster: currently only kitchen 
     ## Player does not lose if they have an 'invisible cloak' in their inventory: monster cannot see them
     if 'item' in rooms[currentRoom] and 'monster' in rooms[currentRoom]['item'] and 'invisible_cloak' not in inventory:
         print('A monster has got you... GAME OVER!')
